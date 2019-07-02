@@ -37,9 +37,9 @@ def print_all(data, start_pad="", each_level_pad="", max_width=80, depth=1):
     out_tmpl = "{l} {t} {r}"
 
     # make the magic
-    if isinstance(data, (str, unicode)):
+    if isinstance(data, (str)):
         out = data
-    elif isinstance(data, (float, int, long)):
+    elif isinstance(data, (float, int)):
         out = str(data)
     elif isinstance(data, (tuple, list, set)):
 
@@ -164,7 +164,7 @@ class Table:
         self.header_sep = header_sep or self.def_header_sep
 
         # width properties
-        if isinstance(width, (int, long)):
+        if isinstance(width, (int)):
             self.width = width
             self.width_method = "fixed"
         else:
@@ -185,7 +185,7 @@ class Table:
         # cell formatting
         if fmt is not None:
             # either split from string with delim "|"
-            if isinstance(fmt, (str, unicode)):
+            if isinstance(fmt, (str)):
                 self.fmt = fmt.split("|")
             # or directly provide fmt as tuple/iterable
             else:
@@ -283,7 +283,7 @@ class Table:
         char = symbol or self.line
 
         if char:
-            return char * self.width
+            return char * int(self.width)
         return ""
 
     def render(self):
